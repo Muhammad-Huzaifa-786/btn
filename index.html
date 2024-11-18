@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<button onclick="abc()">click me</button>
+
+    <script>
+        function abc (){
+            const audioCtx = new (window.AudioContext)
+
+            // Create an oscillator node
+            const oscillator = audioCtx.createOscillator();
+
+            // Set the oscillator type and frequency
+            oscillator.type = 'sine'; // You can use 'square', 'triangle', or 'sawtooth'
+            oscillator.frequency.setValueAtTime(3000, audioCtx.currentTime); // A4 (440 Hz)
+
+            // Connect the oscillator to the audio context's destination (output)
+            oscillator.connect(audioCtx.destination);
+
+            // Start the oscillator
+            oscillator.start();
+
+            // Stop the oscillator after a short duration (e.g., 0.2 seconds)
+            setTimeout(() => {
+                oscillator.stop();
+            }, 10000);
+        }
+    </script>
+</body>
+</html>
